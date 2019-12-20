@@ -1,0 +1,7 @@
+## Interface: 11303
+## Title: Hk Addon
+## Author: HkImpact / Randy Nava
+## Version: 1.0
+## SavedVariables: Hk
+
+main.lua
