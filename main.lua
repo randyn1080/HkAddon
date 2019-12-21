@@ -1,4 +1,4 @@
-SLASH_SGC = "/snap"
+SLASH_SGC1 = "/snap"
 
 StaticPopupDialogs["CopyDialog"] = {
     text = "Press Ctrl-C to copy the text.",
@@ -14,19 +14,25 @@ StaticPopupDialogs["CopyDialog"] = {
 }
 
 SlashCmdList.SGC = function(input)
+
+    if (not IsInGroup()) then
+        print("you aren't in a group")
+        return
+    end
     
     local playerName = ""
 
-    for i = 0, 40 do
+    for i = 1, GetNumGroupMembers() do
         name, rank, subgroup, level, class, fileName, zone, online, isDead, role, isML, combatRole = GetRaidRosterInfo(i)
         playerName = playerName .. name .. ";"
     end
 
 
-    local dialog = StaticPopup_show("CopyDialog")
+    local dialog = StaticPopup_Show("CopyDialog")
     local editBox = dialog.editBox
 
     editBox:SetText(playerName)
     editBox:HighlightText()
     editBox:SetFocus()
+    print('check')
 end
