@@ -2,6 +2,6 @@
 ## Title: Hk Addon
 ## Author: HkImpact / Randy Nava
 ## Version: 1.0
-## SavedVariables: Hk
+## SavedVariables: RaidMembers
 
 main.lua
