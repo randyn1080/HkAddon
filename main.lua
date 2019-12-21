@@ -1,3 +1,5 @@
+
+RaidMembers = {}
 SLASH_SGC1 = "/snap"
 
 StaticPopupDialogs["CopyDialog"] = {
@@ -9,7 +11,19 @@ StaticPopupDialogs["CopyDialog"] = {
     preferredIndex = 3,
     hasEditBox = true,
     maxLetters = 1000,
-    OnShow = function(self)
+    OnAccept = function() -- add another edit box with an input option to pass through boss / DKP gain?
+    
+        tinsert(RaidMembers,"====================")
+        for i=1, GetNumGroupMembers() do
+            local name, rank, subgroup, level, class, fileName, zone, online = GetRaidRosterInfo(i)
+            if online then
+                tinsert(RaidMembers,format("%s, %s",date(),name))
+            end
+        end
+        tinsert(RaidMembers,"====================")
+    
+        print('completed SavedVar upload')
+    
     end
 }
 
@@ -23,7 +37,8 @@ SlashCmdList.SGC = function(input)
     local playerName = ""
 
     for i = 1, GetNumGroupMembers() do
-        name, rank, subgroup, level, class, fileName, zone, online, isDead, role, isML, combatRole = GetRaidRosterInfo(i)
+        local name, rank, subgroup, level, class, fileName, zone, online, isDead, role, isML, combatRole = GetRaidRosterInfo(i)
+
         playerName = playerName .. name .. ";"
     end
 
@@ -34,5 +49,4 @@ SlashCmdList.SGC = function(input)
     editBox:SetText(playerName)
     editBox:HighlightText()
     editBox:SetFocus()
-    print('check')
 end
