@@ -1,5 +1,5 @@
-RaidMembers = {}
 
+RaidMembers = {}
 SLASH_SGC1 = "/snap"
 
 StaticPopupDialogs["CopyDialog"] = {
@@ -38,6 +38,7 @@ SlashCmdList.SGC = function(input)
 
     for i = 1, GetNumGroupMembers() do
         local name, rank, subgroup, level, class, fileName, zone, online, isDead, role, isML, combatRole = GetRaidRosterInfo(i)
+
         playerName = playerName .. name .. ";"
     end
 
@@ -48,5 +49,4 @@ SlashCmdList.SGC = function(input)
     editBox:SetText(playerName)
     editBox:HighlightText()
     editBox:SetFocus()
-
 end
