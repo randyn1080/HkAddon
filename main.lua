@@ -1,6 +1,6 @@
 RaidMembers = {}
 
-SLASH_SGC1 = "/snap"
+SLASH_SGC1 = "/clutch"
 
 StaticPopupDialogs["CopyDialog"] = {
     text = "Press Ctrl-C to copy the text.",
