@@ -17,7 +17,9 @@ StaticPopupDialogs["CopyDialog"] = {
         for i=1, GetNumGroupMembers() do
             local name, rank, subgroup, level, class, fileName, zone, online = GetRaidRosterInfo(i)
             if online then
-                tinsert(RaidMembers,format("%s, %s",date(),name))
+                if UnitIsInMyGuild(format("%s",name)) then                    
+                    tinsert(RaidMembers,format("%s, %s",date(),name))
+                end
             end
         end
         tinsert(RaidMembers,"====================")
@@ -38,7 +40,11 @@ SlashCmdList.SGC = function(input)
 
     for i = 1, GetNumGroupMembers() do
         local name, rank, subgroup, level, class, fileName, zone, online, isDead, role, isML, combatRole = GetRaidRosterInfo(i)
-        playerName = playerName .. name .. ";"
+        if online then
+            if UnitIsInMyGuild(format("%s",name)) then
+                playerName = playerName .. name .. ";"
+            end
+        end                
     end
 
 
@@ -48,4 +54,5 @@ SlashCmdList.SGC = function(input)
     editBox:SetText(playerName)
     editBox:HighlightText()
     editBox:SetFocus()
+
 end
